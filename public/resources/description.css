@@ -1,0 +1,5 @@
+.description .underline { text-decoration: underline; }
+.description .attack { color: #f00; }
+.description .health { color: #00c000; }
+.description .damage { color: #ff0; }
+.description .poison { color: #d535d9; }

@@ -1,0 +1,108 @@
+.cardBoard, .cardBoard * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.cardBoard {
+    font-family: 'DTM-Mono';
+    border-spacing: 0;
+    display: inline-table;
+    border-collapse: collapse;
+    font-size: 14px;
+    max-width: 160px;
+    line-height: 1.42857143;
+    background: #000;
+}
+.cardBoard .cost {
+    max-width: 36px;
+}
+
+.cardBoard img {
+    vertical-align: middle;
+}
+
+.cardBoard input {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    text-align: inherit;
+}
+
+span + input, div + textarea {
+    display: none;
+}
+
+span[style*="display: none;"] + input, div[style*="display: none;"] + textarea {
+    display: block;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.image input {
+    display: none;
+}
+
+.cardBoard .description {
+    max-height: 82px;
+    overflow: hidden;
+}
+
+.description div:empty {
+    width: 100%;
+    height: 100%;
+}
+
+.description textarea {
+    border: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    background: inherit;
+    color: inherit;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    resize: none;
+}
+
+header * {
+    display: inline-block;
+}
+
+.cardBoard .footer {
+    display: none;
+    font-size: 13px;
+    text-align: center;
+    font-family: initial;
+}
+
+.context { background-color: #F4F4F4; margin: 10px; color: #333; border: 1px dashed #000; position: absolute; z-index: 20; text-align: center; border-radius: 10px; display: none; }
+.context li {  list-style: none; margin: 0; padding: 3px; border-top: 1px solid #CCC; cursor: pointer; }
+.context li:hover { background-color: #003366; color: #F2F2F2; }
+.context > :first-child { border-top: none; border-radius: 10px 10px 0 0; }
+.context > :last-child { border-radius: 0 0 10px 10px; }
+
+.cardBoard input[type=number]::-webkit-outer-spin-button,
+.cardBoard input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cardBoard input[type=number] {
+    -moz-appearance:textfield;
+}
+
+@media only screen and (max-device-width: 640px), only screen and (max-device-width: 768px), only screen and (max-device-width: 640px), only screen and (max-device-height: 768px) {
+    .cardBoard .footer {
+        font-size: 11px;
+    }
+}
