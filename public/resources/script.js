@@ -31,7 +31,7 @@ function generate(monster = true) {
         </table>
         <span class="footer">undercard.feildmaster.com</span>`;
     const card = wrapper.querySelector('.cardBoard');
-    card.oncontextmenu = (e) => cardMenu(card, e);
+    card.oncontextmenu = cardMenu.bind(null, card);
     // Name edit
     wrapper.querySelector('.name input').onclick = () => editEvent('name');
     // Number edit
@@ -48,7 +48,7 @@ function generate(monster = true) {
     // Description edit
     const description = wrapper.querySelector('.description div');
     const descriptionBox = wrapper.querySelector('.description textarea');
-    description.onclick = editDescription.bind(description, descriptionBox);
+    wrapper.querySelector('.description').onclick = editDescription.bind(description, descriptionBox);
     descriptionBox.onblur = renderDescription.bind(descriptionBox, description);
     // Image edit
     const imageRow = wrapper.querySelector('.image');
@@ -57,6 +57,7 @@ function generate(monster = true) {
     image.onchange = readImage.bind(image, imageRow.querySelector('img'));
     // Add to document
     container.append(wrapper);
+    tippy(descriptionBox);
 }
 
 function edit(input) {
@@ -75,9 +76,13 @@ function finalizeEdit(span) {
 function editDescription(input) {
     this.style.display = 'none';
     input.focus();
+    input._tippy.show(0);
 }
 
-function renderDescription(span) {
+function renderDescription(span, e) {
+    const tippy = this._tippy;
+    if (e.relatedTarget === tippy.popper) return;
+    tippy.hide(0);
     editEvent('description');
     const description = this.value
         .replace(underlineRegex, (match, $1, $2) => `<span class="underline">${$2||$1}</span>`)
@@ -153,7 +158,9 @@ function saveCard(card) {
 }
 
 function cardMenu(card, e) {
+    console.log(e);
     if (e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) return;
+    if (e.target === card.querySelector('.description textarea')) return;
     e.stopPropagation();
     const context = document.querySelector('.context');
     context.style.display = 'unset';
