@@ -1,3 +1,10 @@
+.cardWrapper {
+    display: inline-table;
+    margin: 0px;
+    border: 2px solid black;
+    background: black;
+}
+
 .cardBoard, .cardBoard * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -13,6 +20,7 @@
     max-width: 160px;
     line-height: 1.42857143;
     background: #000;
+    position: initial;
 }
 .cardBoard .cost {
     max-width: 36px;
@@ -78,7 +86,7 @@ header * {
     display: inline-block;
 }
 
-.cardBoard .footer {
+.cardWrapper .footer {
     display: none;
     font-size: 13px;
     text-align: center;
@@ -102,7 +110,7 @@ header * {
 }
 
 @media only screen and (max-device-width: 640px), only screen and (max-device-width: 768px), only screen and (max-device-width: 640px), only screen and (max-device-height: 768px) {
-    .cardBoard .footer {
+    .cardWrapper .footer {
         font-size: 11px;
     }
 }

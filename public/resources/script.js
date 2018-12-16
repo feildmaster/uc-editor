@@ -6,6 +6,7 @@ function generate(monster = true) {
     gtag('event', `create_${monster ? 'monster':'spell'}`,);
     const container = document.getElementById('cards');
     const wrapper = document.createElement('span');
+    wrapper.className = 'cardWrapper';
     // Desc max: 115
     wrapper.innerHTML = `
         <table class="cardBoard ${monster?'monster':'spell'}">
@@ -27,10 +28,8 @@ function generate(monster = true) {
                 <td class="rarity" colspan="${monster?'2':'4'}" onclick="selectRarity(this);"><img data-rarity="COMMON" src="rarity/COMMON.png"></td>
                 ${monster?'<td class="health edit"><span>0</span></td>':''}
             </tr>
-            <tr>
-                <td class="footer" colspan="4">undercard.feildmaster.com</td>
-            </tr>
-        </table>`;
+        </table>
+        <span class="footer">undercard.feildmaster.com</span>`;
     const card = wrapper.querySelector('.cardBoard');
     card.oncontextmenu = (e) => cardMenu(card, e);
     // Name edit
@@ -131,15 +130,15 @@ function getNextRarity(rarity) {
 
 function saveCard(card) {
     gtag('event', 'save');
-    const footer = card.querySelector('.footer');
-    footer.style.display = 'table-cell';
+    const footer = card.parentElement.querySelector('.footer');
+    footer.style.display = 'table-footer-group';
     const image = card.querySelector('.image img');
     let removedImage = false;
     if (!image.src) {
         image.parentElement.removeChild(image);
         removedImage = true;
     }
-    domtoimage.toPng(card).then((url) => {
+    domtoimage.toPng(card.parentElement).then((url) => {
         const link = document.createElement('a');
         link.download = `${card.querySelector('.name input').value||'undercard'}.png`;
         link.href = url;
