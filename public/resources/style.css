@@ -123,6 +123,9 @@ header * {
     width: 200px;
     font-size: 13px;
 }
+.tippy-tooltip[data-size=small] {
+    width: calc(158px - .8rem);
+}
 .tippy-tooltip h2 {
     border-bottom: 1px solid black;
     font-size: 14px;

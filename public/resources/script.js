@@ -57,6 +57,12 @@ function generate(monster = true) {
     image.onchange = readImage.bind(image, imageRow.querySelector('img'));
     // Add to document
     container.append(wrapper);
+    tippy(imageRow, {
+        content: 'Click to Select Image',
+        placement: 'top',
+        trigger: 'mouseenter',
+        size: 'small',
+    });
     tippy(descriptionBox);
 }
 
