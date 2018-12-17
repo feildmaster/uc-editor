@@ -79,7 +79,7 @@ function editDescription(input) {
     input._tippy.show(0);
 }
 
-function renderDescription(span, e) {
+function renderDescription(span, e = {}) {
     const tippy = this._tippy;
     if (e.relatedTarget === tippy.popper) return;
     tippy.hide(0);
@@ -143,6 +143,10 @@ function saveCard(card) {
         image.parentElement.removeChild(image);
         removedImage = true;
     }
+    const description = card.querySelector('.description textarea.tippy-active');
+    if (description) { // Render description
+        renderDescription.call(description, card.querySelector('.description div'));
+    }
     domtoimage.toPng(card.parentElement).then((url) => {
         const link = document.createElement('a');
         link.download = `${card.querySelector('.name input').value||'undercard'}.png`;
@@ -158,7 +162,6 @@ function saveCard(card) {
 }
 
 function cardMenu(card, e) {
-    console.log(e);
     if (e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) return;
     if (e.target === card.querySelector('.description textarea')) return;
     e.stopPropagation();
