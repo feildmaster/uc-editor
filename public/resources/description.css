@@ -1,5 +1,8 @@
-.description .underline { text-decoration: underline; }
-.description .attack { color: #f00; }
-.description .health { color: #00c000; }
-.description .damage { color: #ff0; }
-.description .poison { color: #d535d9; }
+.underline { text-decoration: underline; }
+.DETERMINATION, .attack { color: #f00; }
+.KINDNESS, .health { color: #00c000; }
+.JUSTICE, .damage { color: #ff0; }
+.PERSEVERANCE, .poison { color: #d535d9; }
+.PATIENCE { color: #41fcff; }
+.BRAVERY { color: #fca500; }
+.INTEGRITY { color: #003bff; }

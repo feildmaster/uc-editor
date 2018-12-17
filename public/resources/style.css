@@ -127,3 +127,11 @@ header * {
     border-bottom: 1px solid black;
     font-size: 14px;
 }
+
+.tippy-content h2 + div > span::after {
+    content: ',';
+}
+
+.tippy-content h2 + div > span:last-child::after {
+    content: '';
+}
