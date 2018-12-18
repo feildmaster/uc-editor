@@ -30,6 +30,9 @@
     <link href="./resources/description.css?v=1.3.1" rel="stylesheet" type="text/css"/>
     <link href="./resources/style.css?v=1.3.1" rel="stylesheet" type="text/css"/>
     <script src="./resources/script.js?v=1.3.0" type="text/javascript"></script>
+    <script>
+      tippy.disableAnimations();
+    </script>
   </head>
   <body>
     <header>
@@ -42,7 +45,7 @@
       <li class="download">Download Card</li>
       <li class="delete">Delete Card</li>
     </div>
-    <div id="descriptionTip"><!-- TODO: Generate this programmatically -->
+    <div id="descriptionTip" class="tipTemplate"><!-- TODO: Generate this programmatically -->
       <h2>Keywords</h2>
       <div>
         <span>Magic</span>
@@ -73,6 +76,16 @@
       <div>
           <span>_Words to underline_</span>
       </div>
+    </div>
+    <div id="selectSoul" class="tipTemplate">
+      <h2>Change Soul</h2>
+      <span class="selectable DETERMINATION">DETERMINATION</span>
+      <span class="selectable KINDNESS">KINDNESS</span>
+      <span class="selectable JUSTICE">JUSTICE</span>
+      <span class="selectable PERSEVERANCE">PERSEVERANCE</span>
+      <span class="selectable PATIENCE">PATIENCE</span>
+      <span class="selectable BRAVERY">BRAVERY</span>
+      <span class="selectable INTEGRITY">INTEGRITY</span>
     </div>
     <script type="text/javascript">
     tippy.setDefaults({

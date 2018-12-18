@@ -6,3 +6,6 @@
 .PATIENCE { color: #41fcff; }
 .BRAVERY { color: #fca500; }
 .INTEGRITY { color: #003bff; }
+
+.selectable { cursor: pointer; }
+.selectable.active { font-weight: bold; text-decoration: underline; }

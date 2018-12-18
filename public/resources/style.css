@@ -115,7 +115,7 @@ header * {
     }
 }
 
-#descriptionTip {
+.tipTemplate {
     display: none;
 }
 
@@ -127,6 +127,7 @@ header * {
     width: calc(158px - .8rem);
 }
 .tippy-tooltip h2 {
+    margin: 5px 0;
     border-bottom: 1px solid black;
     font-size: 14px;
 }
@@ -137,4 +138,14 @@ header * {
 
 .tippy-content h2 + div > span:last-child::after {
     content: '';
+}
+
+.tippy-tooltip.black-theme {
+    background-color: #000;
+    border: 2px solid #FFF;
+    width: 150px;
+}
+
+.tippy-tooltip.black-theme h2 {
+    border-bottom-color: #fff;
 }

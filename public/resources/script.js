@@ -58,6 +58,32 @@ function generate(monster = true) {
     image.onchange = readImage.bind(image, imageRow.querySelector('img'));
     // Add to document
     container.append(wrapper);
+    if (!monster) {
+        tippy(nameCell, {
+            theme: 'black',
+            target: 'input',
+            arrow: false,
+            content: document.getElementById('selectSoul').innerHTML,
+            placement: 'right-start',
+            distance: -5,
+            onMount(e) {
+                e.popper.querySelectorAll('span.selectable').forEach((span) => {
+                    span.onclick = () => {
+                        // Reveal old soul
+                        const activeSoul = e.popper.querySelector('span.selectable.active');
+                        if (activeSoul) {
+                            activeSoul.classList.remove('active');
+                        }
+                        // Hide this soul
+                        span.classList.add('active');
+                        // Modify the cell
+                        modifySoul.call(nameCell, span.textContent);
+                        nameCell.querySelector('input').focus();
+                    };
+                });
+            },
+        });
+    }
     tippy(imageRow, {
         content: 'Click to Select Image',
         placement: 'top',
@@ -71,9 +97,16 @@ function generate(monster = true) {
 function editName() {
     this.querySelector('span').style.display = 'none';
     this.querySelector('input').focus();
+    if (this._tippy) {
+        this._tippy.show(0);
+    }
 }
 
-function finalizeName() {
+function finalizeName(e = {}) {
+    if (this._tippy) {
+        if (e.relatedTarget === this._tippy.popper) return;
+        this._tippy.hide(0);
+    }
     const span = this.querySelector('span');
     const input = this.querySelector('input');
     if (span.textContent !== input.value) {
@@ -81,6 +114,11 @@ function finalizeName() {
         span.textContent = input.value;
     }
     span.style.display = '';
+}
+
+function modifySoul(soul) {
+    this.classList.remove('DETERMINATION', 'KINDNESS', 'JUSTICE', 'PERSEVERANCE', 'PATIENCE', 'BRAVERY', 'INTEGRITY');
+    this.classList.add(soul);
 }
 
 function edit(input) {
@@ -217,4 +255,8 @@ window.onload = () => {
     context.querySelector('.close').onclick = close;
     window.oncontextmenu = close;
     window.onclick = close;
+};
+
+window.onclick = () => {
+    document.querySelectorAll('.tippy-popper').forEach((p) => p._tippy.hide());
 };
