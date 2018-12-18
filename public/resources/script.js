@@ -68,18 +68,7 @@ function generate(monster = true) {
             distance: -5,
             onMount(e) {
                 e.popper.querySelectorAll('span.selectable').forEach((span) => {
-                    span.onclick = () => {
-                        // Reveal old soul
-                        const activeSoul = e.popper.querySelector('span.selectable.active');
-                        if (activeSoul) {
-                            activeSoul.classList.remove('active');
-                        }
-                        // Hide this soul
-                        span.classList.add('active');
-                        // Modify the cell
-                        modifySoul.call(nameCell, span.textContent);
-                        nameCell.querySelector('input').focus();
-                    };
+                    span.onclick = modifySoul.bind(span, nameCell, e.popper);
                 });
             },
         });
@@ -91,7 +80,9 @@ function generate(monster = true) {
         size: 'small',
         interactive: false,
     });
+    // TODO: Set description keywords to allow insertion
     tippy(descriptionBox);
+    // TODO: Rarity
 }
 
 function editName() {
@@ -116,9 +107,21 @@ function finalizeName(e = {}) {
     span.style.display = '';
 }
 
-function modifySoul(soul) {
-    this.classList.remove('DETERMINATION', 'KINDNESS', 'JUSTICE', 'PERSEVERANCE', 'PATIENCE', 'BRAVERY', 'INTEGRITY');
-    this.classList.add(soul);
+function modifySoul(nameCell, popper) {
+    const activeSoul = popper.querySelector('span.selectable.active');
+    const input = nameCell.querySelector('input');
+    if (this === activeSoul) {
+        input.focus();
+        return;
+    } else if (activeSoul) {
+        activeSoul.classList.remove('active');
+        nameCell.classList.remove(activeSoul.textContent);
+    }
+    editEvent('soul');
+    this.classList.add('active');
+    // Modify the cell
+    nameCell.classList.add(this.textContent);
+    input.focus();
 }
 
 function edit(input) {
@@ -255,8 +258,4 @@ window.onload = () => {
     context.querySelector('.close').onclick = close;
     window.oncontextmenu = close;
     window.onclick = close;
-};
-
-window.onclick = () => {
-    document.querySelectorAll('.tippy-popper').forEach((p) => p._tippy.hide());
 };
