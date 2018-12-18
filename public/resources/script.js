@@ -11,7 +11,7 @@ function generate(monster = true) {
     wrapper.innerHTML = `
         <table class="cardBoard ${monster?'monster':'spell'}">
             <tr>
-                <td class="name" colspan="3"><input type="text" maxlength="15" placeholder="Name"></td>
+                <td class="name" colspan="3"><span></span><input type="text" maxlength="15" placeholder="Name"></td>
                 <td class="cost edit"><span>0</span></td>
             </tr>
             <tr>
@@ -33,7 +33,9 @@ function generate(monster = true) {
     const card = wrapper.querySelector('.cardBoard');
     card.oncontextmenu = cardMenu.bind(null, card);
     // Name edit
-    wrapper.querySelector('.name input').onclick = () => editEvent('name');
+    const nameCell = wrapper.querySelector('.name');
+    nameCell.onclick = editName.bind(nameCell);
+    nameCell.querySelector('input').onblur = finalizeName.bind(nameCell);
     // Number edit
     const input = document.createElement('input');
     input.type = 'number';
@@ -41,7 +43,6 @@ function generate(monster = true) {
     wrapper.querySelectorAll('.edit span').forEach(function (span) {
         const clone = input.cloneNode();
         span.onclick = edit.bind(span, clone);
-        //clone.max = span.classList.contains('cost') ? '30' : '99';
         clone.onblur = finalizeEdit.bind(clone, span);
         span.after(clone);
     });
@@ -62,8 +63,24 @@ function generate(monster = true) {
         placement: 'top',
         trigger: 'mouseenter',
         size: 'small',
+        interactive: false,
     });
     tippy(descriptionBox);
+}
+
+function editName() {
+    this.querySelector('span').style.display = 'none';
+    this.querySelector('input').focus();
+}
+
+function finalizeName() {
+    const span = this.querySelector('span');
+    const input = this.querySelector('input');
+    if (span.textContent !== input.value) {
+        editEvent('name');
+        span.textContent = input.value;
+    }
+    span.style.display = '';
 }
 
 function edit(input) {
@@ -74,14 +91,18 @@ function edit(input) {
 }
 
 function finalizeEdit(span) {
-    editEvent(span.parentElement.classList[0]);
-    span.textContent = this.value || span.textContent;
+    const newValue = this.value || span.textContent;
+    if (span.textContent !== newValue) {
+        editEvent(span.parentElement.classList[0]);
+        span.textContent = newValue;
+    }
     span.style.display = '';
 }
 
 function editDescription(input) {
     this.style.display = 'none';
     input.focus();
+    input._oldValue = input.value;
     input._tippy.show(0);
 }
 
@@ -89,11 +110,13 @@ function renderDescription(span, e = {}) {
     const tippy = this._tippy;
     if (e.relatedTarget === tippy.popper) return;
     tippy.hide(0);
-    editEvent('description');
-    const description = this.value
-        .replace(underlineRegex, (match, $1, $2) => `<span class="underline">${$2||$1}</span>`)
-        .replace(colorRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`);
-    span.innerHTML = description;
+    if (this.value !== this._oldValue) {
+        editEvent('description');
+        const description = this.value
+            .replace(underlineRegex, (match, $1, $2) => `<span class="underline">${$2||$1}</span>`)
+            .replace(colorRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`);
+        span.innerHTML = description;
+    }
     span.style.display = '';
 }
 
