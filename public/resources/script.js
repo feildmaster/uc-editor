@@ -1,6 +1,11 @@
 const underlineRegex = /(Magic|Future|Dodge|Dust|Taunt|Paralyze|paralyzed|Start of turn|End of turn|Haste|Armor|Can't attack|Candy|Transparency|Charge|Fatigue|Turbo|Amalgamate|Dog)|_([^_]+)_/g
 const colorRegex = /(ATK|DMG|HP|KR)/g;
+let extras = false;
 
+function showExtras() {
+    extras = !extras;
+    document.body.classList.toggle('showExtras', extras);
+}
 
 function generate(monster = true) {
     gtag('event', `create_${monster ? 'monster':'spell'}`,);
@@ -58,21 +63,22 @@ function generate(monster = true) {
     image.onchange = readImage.bind(image, imageRow.querySelector('img'));
     // Add to document
     container.append(wrapper);
-    if (!monster) {
-        tippy(nameCell, {
-            theme: 'black',
-            target: 'input',
-            arrow: false,
-            content: document.getElementById('selectSoul').innerHTML,
-            placement: 'right-start',
-            distance: -5,
-            onMount(e) {
-                e.popper.querySelectorAll('span.selectable').forEach((span) => {
-                    span.onclick = modifySoul.bind(span, nameCell, e.popper);
-                });
-            },
-        });
-    }
+    tippy(nameCell, {
+        theme: 'black',
+        target: 'input',
+        arrow: false,
+        content: document.getElementById('selectSoul').innerHTML,
+        placement: 'right-start',
+        distance: -5,
+        onMount(e) {
+            e.popper.querySelectorAll('span.selectable').forEach((span) => {
+                span.onclick = modifySoul.bind(span, nameCell, e.popper);
+            });
+        },
+        onShow(e) {
+            return !monster || extras;
+        },
+    });
     tippy(imageRow, {
         content: 'Click to Select Image',
         placement: 'top',
@@ -82,7 +88,8 @@ function generate(monster = true) {
     });
     // TODO: Set description keywords to allow insertion
     tippy(descriptionBox);
-    tippy(wrapper.querySelector('.rarity'), {
+    tippy(wrapper, {
+        target: '.rarity',
         theme: 'black',
         trigger: 'mouseenter',
         hideOnClick: true,
@@ -267,3 +274,7 @@ window.onload = () => {
     window.oncontextmenu = close;
     window.onclick = close;
 };
+
+if (/[^=]extras\b/i.test(location.search)) {
+    showExtras();
+}
