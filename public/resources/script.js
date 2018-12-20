@@ -25,7 +25,7 @@ function generate(monster = true) {
             </tr>
             <tr>
                 ${monster?'<td class="attack edit"><span>0</span></td>':''}
-                <td class="rarity" colspan="${monster?'2':'4'}" onclick="selectRarity(this);"><img data-rarity="COMMON" src="rarity/COMMON.png"></td>
+                <td class="rarity" colspan="${monster?2:4}"><img src="rarity/COMMON.png"></td>
                 ${monster?'<td class="health edit"><span>0</span></td>':''}
             </tr>
         </table>
@@ -82,7 +82,34 @@ function generate(monster = true) {
     });
     // TODO: Set description keywords to allow insertion
     tippy(descriptionBox);
-    // TODO: Rarity
+    tippy(wrapper.querySelector('.rarity'), {
+        theme: 'black',
+        trigger: 'mouseenter',
+        hideOnClick: true,
+        arrow: false,
+        content: document.getElementById('selectRarity').innerHTML,
+        placement: 'top',
+        size: 'small',
+        distance: -1,
+        shouldPopperHideOnBlur() {
+            return true;
+        },
+        onMount(e) {
+            const tip = e.popper._tippy;
+            e.popper.querySelectorAll('img.selectable').forEach((item) => {
+                item.onclick = () => {
+                    editEvent('rarity');
+                    const active = e.popper.querySelector('img.active');
+                    if (active) {
+                        active.classList.remove('active');
+                    }
+                    item.classList.add('active');
+                    tip.reference.querySelector('img').src = item.src;
+                    tip.hide();
+                };
+            });
+        },
+    });
 }
 
 function editName() {
@@ -182,25 +209,6 @@ function readImage(image) {
         image.src = e.target.result;
     };
     reader.readAsDataURL(this.files[0]);
-}
-
-function selectRarity(element) {
-    editEvent('rarity');
-    // Possibly make this a drop down instead
-    const image = element.querySelector('img');
-    const rarity = getNextRarity(image.dataset.rarity);
-    image.dataset.rarity = rarity;
-    image.src = `rarity/${rarity}.png`;
-}
-
-function getNextRarity(rarity) {
-    switch (rarity) {
-        default: return 'COMMON';
-        case 'COMMON': return 'RARE';
-        case 'RARE': return 'EPIC';
-        case 'EPIC': return 'LEGENDARY';
-        case 'LEGENDARY': return 'DETERMINATION';
-    }
 }
 
 function saveCard(card) {

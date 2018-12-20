@@ -149,3 +149,11 @@ header * {
 .tippy-tooltip.black-theme h2 {
     border-bottom-color: #fff;
 }
+
+.extra {
+    display: none;
+}
+
+.showExtras .extra {
+    display: initial;
+}
