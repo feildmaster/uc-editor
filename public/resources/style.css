@@ -41,6 +41,12 @@
     text-align: inherit;
 }
 
+.edit > span {
+    width: 100%;
+    display: block;
+    cursor: text;
+}
+
 span + input, div + textarea {
     display: none;
 }
@@ -106,7 +112,7 @@ header * {
 }
 
 .cardBoard input[type=number] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
 }
 
 @media only screen and (max-device-width: 640px), only screen and (max-device-width: 768px), only screen and (max-device-width: 640px), only screen and (max-device-height: 768px) {

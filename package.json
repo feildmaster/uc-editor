@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "deploy": "firebase deploy --only hosting -m "
+    },
+    "private": true
+}
