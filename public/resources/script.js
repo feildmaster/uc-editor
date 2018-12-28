@@ -1,6 +1,6 @@
 const effects = [
     'Magic', 'Future', 'Dodge', 'Dust', 'Taunt', 'Paralyze', 'paralyzed', 'Start of turn', 'End of turn', 'Haste', 'Armor', `Can't attack`, 'Candy', 'Transparency', 'Charge',
-    'Fatigue', 'Turbo', 'Amalgamate', 'Dog',
+    'Fatigue', 'Turbo', 'Amalgamate', 'Dog', 'Ranged', 'Support',
 ];
 const specials = ['ATK', 'DMG', 'HP', 'KR'];
 const underlineRegex = new RegExp(`(${effects.join('|')})|_([^_]+)_`, 'g');
@@ -94,8 +94,7 @@ function generate(monster = true) {
     });
     // TODO: Set description keywords to allow insertion
     tippy(descriptionBox);
-    tippy(wrapper, {
-        target: '.rarity',
+    tippy(wrapper.querySelector('.rarity'), {
         theme: 'black',
         trigger: 'mouseenter',
         hideOnClick: true,
@@ -112,10 +111,7 @@ function generate(monster = true) {
             e.popper.querySelectorAll('img.selectable').forEach((item) => {
                 item.onclick = () => {
                     editEvent('rarity');
-                    const active = e.popper.querySelector('img.active');
-                    if (active) {
-                        active.classList.remove('active');
-                    }
+                    e.popper.querySelector('img.active').classList.remove('active');
                     item.classList.add('active');
                     tip.reference.querySelector('img').src = item.src;
                     tip.hide();
