@@ -279,9 +279,6 @@ window.onload = () => {
     context.querySelector('.close').onclick = close;
     window.oncontextmenu = close;
     window.onclick = close;
-    document.querySelectorAll('button').forEach((button) => {
-        button.disabled = false;
-    });
     const div = document.querySelector('#descriptionTip div');
     function addType(type) {
         const el = document.createElement('span');
@@ -301,8 +298,12 @@ window.onload = () => {
         shouldPopperHideOnBlur: () => false,
         interactive: true,
     });
-};
 
-if (/(?:^|\&)extras\b/i.test(location.search)) {
-    showExtras();
-}
+    if (/(?:\?|\&)extras\b/i.test(location.search)) {
+        showExtras();
+    }
+
+    document.querySelectorAll('button').forEach((button) => {
+        button.disabled = false;
+    });
+};
