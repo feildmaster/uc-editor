@@ -1,5 +1,10 @@
-const underlineRegex = /(Magic|Future|Dodge|Dust|Taunt|Paralyze|paralyzed|Start of turn|End of turn|Haste|Armor|Can't attack|Candy|Transparency|Charge|Fatigue|Turbo|Amalgamate|Dog)|_([^_]+)_/g
-const colorRegex = /(ATK|DMG|HP|KR)/g;
+const effects = [
+    'Magic', 'Future', 'Dodge', 'Dust', 'Taunt', 'Paralyze', 'paralyzed', 'Start of turn', 'End of turn', 'Haste', 'Armor', `Can't attack`, 'Candy', 'Transparency', 'Charge',
+    'Fatigue', 'Turbo', 'Amalgamate', 'Dog',
+];
+const specials = ['ATK', 'DMG', 'HP', 'KR'];
+const underlineRegex = new RegExp(`(${effects.join('|')})|_([^_]+)_`, 'g');
+const colorRegex = new RegExp(`(${specials.join('|')})`, 'g');
 let extras = false;
 
 function showExtras() {
@@ -45,11 +50,12 @@ function generate(monster = true) {
     const input = document.createElement('input');
     input.type = 'number';
     input.min = '0';
-    wrapper.querySelectorAll('.edit span').forEach(function (span) {
+    wrapper.querySelectorAll('.edit').forEach(function (cell) {
         const clone = input.cloneNode();
-        span.onclick = edit.bind(span, clone);
-        clone.onblur = finalizeEdit.bind(clone, span);
+        const span = cell.querySelector('span');
         span.after(clone);
+        cell.onclick = edit.bind(span, clone);
+        clone.onblur = finalizeEdit.bind(clone, span);
     });
     // Description edit
     const description = wrapper.querySelector('.description div');
@@ -256,7 +262,7 @@ function cardMenu(card, e) {
     context.style.top = `${e.pageY}px`;
     // Delete
     context.querySelector('.delete').onclick = () => {
-        card.remove();
+        card.parentElement.remove();
         context.style.display = '';
     };
     // Download
@@ -273,8 +279,30 @@ window.onload = () => {
     context.querySelector('.close').onclick = close;
     window.oncontextmenu = close;
     window.onclick = close;
+    document.querySelectorAll('button').forEach((button) => {
+        button.disabled = false;
+    });
+    const div = document.querySelector('#descriptionTip div');
+    function addType(type) {
+        const el = document.createElement('span');
+        el.innerText = type;
+        div.append(el, ' ');
+    }
+    effects.forEach(addType);
+    specials.forEach(addType);
+
+    tippy.setDefaults({
+        content: document.getElementById('descriptionTip').innerHTML,
+        placement: 'right-end',
+        arrow: true,
+        trigger: 'manual',
+        hideOnClick: false,
+        performance: true,
+        shouldPopperHideOnBlur: () => false,
+        interactive: true,
+    });
 };
 
-if (/[^=]extras\b/i.test(location.search)) {
+if (/(?:^|\&)extras\b/i.test(location.search)) {
     showExtras();
 }

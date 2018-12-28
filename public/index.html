@@ -29,7 +29,7 @@
     <link href="./resources/undercards.css?v=1.2.1" rel="stylesheet" type="text/css"/>
     <link href="./resources/description.css?v=1.5.0" rel="stylesheet" type="text/css"/>
     <link href="./resources/style.css?v=1.5.2" rel="stylesheet" type="text/css"/>
-    <script src="./resources/script.js?v=1.5.0" type="text/javascript"></script>
+    <script src="./resources/script.js?v=1.5.2" type="text/javascript"></script>
     <script>
       tippy.disableAnimations();
     </script>
@@ -37,7 +37,7 @@
   <body>
     <header>
       <h2>[undercards.net] Card Template Editor</h2>
-      <p>New: <button onclick="generate();">Monster</button> <button onclick="generate(false);">Spell</button></p>
+      <p>New: <button onclick="generate();" disabled>Monster</button> <button onclick="generate(false);" disabled>Spell</button></p>
     </header>
     <div id="cards"></div>
     <div class="context">
@@ -47,31 +47,7 @@
     </div>
     <div id="descriptionTip" class="tipTemplate"><!-- TODO: Generate this programmatically -->
       <h2>Keywords</h2>
-      <div>
-        <span>Magic</span>
-        <span>Future</span>
-        <span>Dodge</span>
-        <span>Dust</span>
-        <span>Taunt</span>
-        <span>Paralyze</span>
-        <span>paralyzed</span>
-        <span>Start of turn</span>
-        <span>End of turn</span>
-        <span>Haste</span>
-        <span>Armor</span>
-        <span>Can't attack</span>
-        <span>Candy</span>
-        <span>Transparency</span>
-        <span>Charge</span>
-        <span>Fatigue</span>
-        <span>Turbo</span>
-        <span>Amalgamate</span>
-        <span>Dog</span>
-        <span>ATK</span>
-        <span>DMG</span>
-        <span>HP</span>
-        <span>KR</span>
-      </div>
+      <div></div>
       <h2>Custom Keywords</h2>
       <div>
           <span>_Words to underline_</span>
@@ -96,17 +72,5 @@
       <img class="selectable" src="./rarity/DETERMINATION.png">
       <img class="selectable extra" src="./rarity/GENERATED.png">
     </div>
-    <script type="text/javascript">
-    tippy.setDefaults({
-        content: document.getElementById('descriptionTip').innerHTML,
-        placement: 'right-end',
-        arrow: true,
-        trigger: 'manual',
-        hideOnClick: false,
-        performance: true,
-        shouldPopperHideOnBlur: () => false,
-        interactive: true,
-    });
-    </script>
   </body>
 </html>
