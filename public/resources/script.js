@@ -168,10 +168,14 @@ function edit(input) {
     this.style.display = 'none';
     input.value = '';
     input.placeholder = this.textContent;
+    // Fix firefox's bullshit
+    input.keepAlive = true;
     input.focus();
+    input.keepAlive = false;
 }
 
 function finalizeEdit(span) {
+    if (this.keepAlive) return;
     const newValue = this.value || span.textContent;
     if (span.textContent !== newValue) {
         editEvent(span.parentElement.classList[0]);
