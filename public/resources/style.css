@@ -30,6 +30,10 @@
     vertical-align: middle;
 }
 
+.cardboard .image img {
+    max-width: 100%;
+}
+
 .cardBoard input {
     background: transparent;
     border: none;
