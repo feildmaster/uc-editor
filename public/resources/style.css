@@ -1,3 +1,60 @@
+body > footer {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    border: 1px solid;
+    padding: 5px 0;
+    margin: 0 auto;
+    min-width: 242px;
+    margin-left: -121px;
+    text-align: center;
+    background-color: black;
+    cursor: default;
+    border-radius: 30px;
+}
+
+.transparent {
+    opacity: 0.3;
+    z-index: 1000;
+}
+.transparent:hover {
+    opacity: 1;
+}
+
+#cards {
+    padding-bottom: 40px;
+}
+
+#buttons {
+    display: none;
+    text-align: right;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+
+#buttons * {
+    float: right;
+    clear: both;
+}
+
+#buttons button {
+    display: none;
+}
+
+#buttons:hover button {
+    display: block;
+}
+
+a, a:visited {
+    color: white;
+}
+
+#buttons .cardBoard {
+    width: 164px;
+    height: 234px;
+}
+
 .cardWrapper {
     display: inline-table;
     margin: 0px;
@@ -164,4 +221,11 @@ header * {
 
 .showExtras .extra {
     display: initial;
+}
+
+.add {
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 18px;
+    text-align: center;
 }

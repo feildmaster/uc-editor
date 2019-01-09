@@ -303,7 +303,5 @@ window.onload = () => {
         showExtras();
     }
 
-    document.querySelectorAll('button').forEach((button) => {
-        button.disabled = false;
-    });
+    document.querySelector('#buttons').style.display = 'block';
 };
