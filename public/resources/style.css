@@ -225,7 +225,8 @@ header * {
 
 .add {
     border: 2px solid white;
-    border-radius: 10px;
-    width: 18px;
+    border-radius: 15px;
+    width: 26px;
     text-align: center;
+    font-size: x-large;
 }
