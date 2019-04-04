@@ -1,4 +1,5 @@
 .underline { text-decoration: underline; }
+.highlight { color: #00b8ff; }
 .DETERMINATION, .attack { color: #f00; }
 .KINDNESS, .health { color: #00c000; }
 .JUSTICE, .damage { color: #ff0; }

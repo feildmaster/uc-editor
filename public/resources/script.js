@@ -1,10 +1,11 @@
 const effects = [
     'Magic', 'Future', 'Dodge', 'Dust', 'Taunt', 'Paralyze', 'paralyzed', 'Start of turn', 'End of turn', 'Haste', 'Armor', `Can't attack`, 'Candy', 'Transparency', 'Charge',
-    'Fatigue', 'Turbo', 'Amalgamate', 'Dog', 'Ranged', 'Support',
+    'Fatigue', 'Turbo', 'Ranged', 'Support',
 ];
 const specials = ['ATK', 'DMG', 'HP', 'KR'];
 const underlineRegex = new RegExp(`(${effects.join('|')})|_([^_]+)_`, 'g');
 const colorRegex = new RegExp(`(${specials.join('|')})`, 'g');
+const highlightRegex = /\{([^}]+)}/g;
 let extras = false;
 
 function showExtras() {
@@ -195,7 +196,8 @@ function renderDescription(span, e = {}) {
         editEvent('description');
         const description = this.value
             .replace(underlineRegex, (match, $1, $2) => `<span class="underline">${$2||$1}</span>`)
-            .replace(colorRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`);
+            .replace(colorRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`)
+            .replace(highlightRegex, (match, $1) => `<span class="highlight">${$1}</span>`);
         span.innerHTML = description;
     }
     span.style.display = '';
