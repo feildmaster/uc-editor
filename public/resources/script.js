@@ -124,10 +124,14 @@ function generate(monster = true) {
         },
     });
     const tribe = wrapper.querySelector('.tribe');
+    tribe.onclick = (e) => {
+        console.log('click');
+        e.stopPropagation();
+    };
     tippy(tribe, {
         theme: 'black',
-        trigger: 'mouseenter',
-        hideOnClick: true,
+        trigger: 'mouseenter focus',
+        hideOnClick: false,
         arrow: false,
         content: document.getElementById('selectTribe').innerHTML,
         placement: 'top-end',

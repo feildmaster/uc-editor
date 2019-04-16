@@ -1,7 +1,7 @@
 {
     "scripts": {
         "deploy": "firebase deploy --only hosting -m ",
-        "test": "firebase serve"
+        "start": "firebase serve --host 0.0.0.0"
     },
     "private": true
 }
