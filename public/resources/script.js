@@ -1,9 +1,11 @@
 const effects = [
     'Magic', 'Future', 'Dodge', 'Dust', 'Taunt', 'Paralyze', 'paralyzed', 'Start of turn', 'End of turn', 'Haste', 'Armor', `Can't attack`, 'Candy', 'Transparency', 'Charge',
     'Fatigue', 'Turbo', 'Ranged', 'Support',
+    // Tribes
+    'Amalgamates?', 'Bombs?', 'Dogs?', 'Froggits?', 'G followers?', 'Lost souls?', 'Mold', 'Plants?', 'Royal guards?', 'Snails?', 'Spiders?', 'Temmies?',
 ];
 const specials = ['ATK', 'DMG', 'HP', 'KR'];
-const underlineRegex = new RegExp(`(${effects.join('|')})|_([^_]+)_`, 'g');
+const underlineRegex = new RegExp(`(${effects.join('|')})(?![^{]*})|_([^_]+)_`, 'g');
 const colorRegex = new RegExp(`(${specials.join('|')})`, 'g');
 const highlightRegex = /\{([^}]+)}/g;
 let extras = false;
@@ -284,7 +286,7 @@ window.onload = () => {
     const div = document.querySelector('#descriptionTip div');
     function addType(type) {
         const el = document.createElement('span');
-        el.innerText = type;
+        el.innerText = type.replace('s?', '');
         div.append(el, ' ');
     }
     effects.forEach(addType);
