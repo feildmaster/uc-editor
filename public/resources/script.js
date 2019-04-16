@@ -31,6 +31,7 @@ function generate(monster = true) {
                 <td class="image" colspan="4">
                     <input type="file" accept="image/*">
                     <img>
+                    <img class="tribe none" src="./resources/tribes/MONSTER.png">
                 </td>
             </tr>
             <tr>
@@ -117,6 +118,29 @@ function generate(monster = true) {
                     e.popper.querySelector('img.active').classList.remove('active');
                     item.classList.add('active');
                     tip.reference.querySelector('img').src = item.src;
+                    tip.hide();
+                };
+            });
+        },
+    });
+    const tribe = wrapper.querySelector('.tribe');
+    tippy(tribe, {
+        theme: 'black',
+        trigger: 'mouseenter',
+        hideOnClick: true,
+        arrow: false,
+        content: document.getElementById('selectTribe').innerHTML,
+        placement: 'top-end',
+        onMount(e) {
+            const tip = e.popper._tippy;
+            e.popper.querySelectorAll('img.selectable').forEach((item) => {
+                item.onclick = () => {
+                    editEvent('tribe');
+                    e.popper.querySelector('img.active').classList.remove('active');
+                    item.classList.add('active');
+                    tribe.classList.toggle('none', item.src.includes('MONSTER'));
+                    tribe.classList.toggle('smallerIcon', item.src.includes('SPIDER'));
+                    tribe.src = item.src;
                     tip.hide();
                 };
             });
@@ -230,8 +254,7 @@ function readImage(image) {
 
 function saveCard(card) {
     gtag('event', 'save');
-    const footer = card.parentElement.querySelector('.footer');
-    footer.style.display = 'table-footer-group';
+    card.parentElement.classList.toggle('saving', true);
     const image = card.querySelector('.image img');
     let removedImage = false;
     if (!image.src) {
@@ -249,9 +272,9 @@ function saveCard(card) {
         link.click();
     }).catch((error) => console.error('Ooops.', error))
     .then(() => {
-        footer.style.display = '';
+        card.parentElement.classList.toggle('saving', false);
         if (removedImage) {
-            card.querySelector('.image').append(image);
+            card.querySelector('.image').prepend(image);
         }
     });
 }

@@ -14,7 +14,8 @@ td, th {
     width: 160px;
     height: 220px;
     table-layout: fixed;
-    position:relative;
+    position: relative;
+    float: left;
 }
 
 .cardBoard td {
@@ -91,4 +92,59 @@ td, th {
     text-align: center;
     vertical-align: middle;
     background-color: #000;
+}
+
+.smallIcon, .smallerIcon {
+    margin: 2px;
+}
+
+.smallIcon {
+    max-height: 16px;
+    max-width: 16px;
+}
+
+.smallerIcon, .cardBoard .smallerIcon {
+    max-height: 14px;
+    max-width: 14px;
+}
+
+.cardBoard img.tribe {
+    width: unset;
+    height: unset;
+    position: absolute;
+    max-height: 16px;
+    max-width: 16px;
+    z-index: 3;
+    right: 4px;
+}
+
+.cardBoard .tribe {
+    top: 100px;
+}
+
+.cardBoard .tribe.none {
+    opacity: 0.1;
+    max-height: 14px;
+    max-width: 14px;
+}
+
+.tribe.none:hover {
+    display: unset;
+    opacity: 1;
+}
+
+.cardBoard .tribe.tippy-active {
+    opacity: 1;
+}
+
+.saving .tribe.none {
+    display: none;
+}
+
+.saving .footer {
+    display: table-footer-group;
+}
+
+.saving .image img[src=""] {
+    display: none;
 }

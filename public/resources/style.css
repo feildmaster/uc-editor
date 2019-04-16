@@ -77,7 +77,6 @@ a, a:visited {
     max-width: 160px;
     line-height: 1.42857143;
     background: #000;
-    position: initial;
 }
 .cardBoard .cost {
     max-width: 36px;
