@@ -229,3 +229,15 @@ header * {
     text-align: center;
     font-size: x-large;
 }
+
+.saving .tribe.none {
+    display: none;
+}
+
+.saving .footer {
+    display: table-footer-group;
+}
+
+.saving .image img[src=""] {
+    display: none;
+}

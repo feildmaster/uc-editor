@@ -136,15 +136,3 @@ td, th {
 .cardBoard .tribe.tippy-active {
     opacity: 1;
 }
-
-.saving .tribe.none {
-    display: none;
-}
-
-.saving .footer {
-    display: table-footer-group;
-}
-
-.saving .image img[src=""] {
-    display: none;
-}
