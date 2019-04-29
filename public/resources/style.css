@@ -238,6 +238,14 @@ header * {
     display: table-footer-group;
 }
 
-.saving .image img[src=""] {
-    display: none;
+.dragging {
+    opacity: 0.25;
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    -ms-transform:scale(0.5);
+    transform:scale(0.5);
+}
+
+.over {
+    border-left: 2px solid blue;
 }

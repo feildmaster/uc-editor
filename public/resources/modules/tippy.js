@@ -1,8 +1,11 @@
-import tippy from 'https://unpkg.com/tippy.js@4.3.0/esm/index.min.js?module';
-import {value as extras} from './extras.js';
+import tippy from 'https://unpkg.com/tippy.js@4.3.0/esm/index.all.min.js?module';
+import extras from './extras.js';
 
 // Important! Wrapper must exist on document before registering
 export default function registerTips(wrapper) {
+  if (wrapper.draggable) {
+    wrapper.addEventListener('dragstart', closeall);
+  }
   const nameCell = wrapper.querySelector('.name');
   const monster = wrapper.querySelector('table.monster') !== null;
   tippy(nameCell, {
@@ -108,3 +111,7 @@ tippy.setDefaults({
   ignoreAttributes: true,
   animateFill: false,
 });
+
+function closeall() {
+  // TODO: Close all tippies
+}

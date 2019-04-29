@@ -1,12 +1,11 @@
-export { value, toggle };
 let val = false;
 
-function toggle() {
+export function toggle() {
     val = !val;
     document.body.classList.toggle('showExtras', val);
 }
 
-function value() {
+export default function value() {
   return val;
 }
 
