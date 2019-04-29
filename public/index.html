@@ -8,6 +8,7 @@
     <link href="./resources/undercards.css?v=3.0.0" rel="stylesheet"/>
     <link href="./resources/description.css?v=2.1.0" rel="stylesheet"/>
     <link href="./resources/style.css?v=3.0.0" rel="stylesheet"/>
+    <link href="./resources/loading.css?v=3.0.0" rel="stylesheet"/>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script src="https://www.googletagmanager.com/gtag/js?id=UA-38424623-1"></script>
@@ -35,8 +36,19 @@
     <script defer src="https://unpkg.com/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
     <!-- <script defer src="./resources/simpletoast.js?v=1.2.1"></script> -->
     <script type="module" src="./resources/modules/index.js?v=3.0.0"></script>
+    <script defer nomodule src="./resources/script.js"></script>
   </head>
   <body>
+    <div id="loading">
+      <span>
+        <div class="pip"></div>
+        <div class="pip"></div>
+        <div class="pip"></div>
+        <div class="pip"></div>
+        <div class="pip"></div>
+      </span>
+      <div>Loading...</div>
+    </div> 
     <div id="buttons">
       <span class="add">+</span>
       <button onclick="generate();">Monster</button>

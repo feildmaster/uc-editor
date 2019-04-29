@@ -1,5 +1,6 @@
 {
   "projects": {
-    "master": "undercard-509ba"
+    "master": "undercard-509ba",
+    "test": "undercardtest"
   }
 }
