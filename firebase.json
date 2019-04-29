@@ -9,12 +9,14 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    "redirects": [{
+      "source": "/resources/modules/+([0-9]).+([0-9]).+([0-9])/:path*",
+      "destination": "../:path"
+    }],
+    "rewrites": [{
+      "source": "!.@(js|css)",
+      "destination": "/index.html"
+    }]
   },
   "storage": {
     "rules": "storage.rules"
