@@ -1,4 +1,4 @@
-import tippy from 'https://unpkg.com/tippy.js@4.3.0/esm/index.all.min.js?module';
+import tippy from './3rdparty/tippy.js';
 import extras from './extras.js';
 
 // Important! Wrapper must exist on document before registering
@@ -24,15 +24,22 @@ export default function registerTips(wrapper) {
       return !monster || extras();
     },
   });
+  const image = wrapper.querySelector('.image img');
   tippy(wrapper.querySelector('.image'), {
     content: 'Click to Select Image',
     placement: 'top',
     trigger: 'mouseenter',
     size: 'small',
     interactive: false,
+    onShown() {},
+    onShow() {
+      return !image.src;
+    },
   });
   // TODO: Set description keywords to allow insertion
-  tippy(wrapper.querySelector('.description textarea'));
+  tippy(wrapper.querySelector('.description textarea'), {
+    content: document.getElementById('descriptionTip').innerHTML,
+  });
   tippy(wrapper.querySelector('.rarity'), {
     theme: 'black',
     trigger: 'mouseenter',
@@ -98,7 +105,7 @@ function modifySoul(nameCell, popper) {
 }
 
 tippy.setDefaults({
-  content: document.getElementById('descriptionTip').innerHTML,
+  onShow, onShown, onHidden,
   placement: 'right-end',
   a11y: false,
   arrow: true,
@@ -114,4 +121,20 @@ tippy.setDefaults({
 
 function closeall() {
   // TODO: Close all tippies
+}
+
+let active = null;
+function onShown(instance) {
+  active = instance;
+}
+
+function onHidden(instance) {
+  if (active === instance) {
+    active = null;
+  }
+}
+
+function onShow(instance) {
+  console.log(instance);
+  return !active;
 }
