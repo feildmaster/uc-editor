@@ -42,11 +42,11 @@ export default function card(monster = true) {
 
   // Menu
   const card = wrapper.querySelector('.cardBoard');
-  card.oncontextmenu = cardMenu.bind(null, card);
+  card.oncontextmenu = cardMenu;
 
   // Name
   const nameCell = wrapper.querySelector('.name');
-  nameCell.onclick = editName.bind(nameCell);
+  nameCell.onclick = editName;
   nameCell.querySelector('input').onblur = finalizeName.bind(nameCell);
 
   // Numbers
