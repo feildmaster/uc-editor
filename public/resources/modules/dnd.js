@@ -25,7 +25,7 @@ function end(e) {
 }
 
 function over(e) {
-  if (!dragging) return;
+  if (!dragging || this.classList.contains('dragging')) return;
   e.preventDefault();
   this.classList.add('over');
 
@@ -36,7 +36,6 @@ function over(e) {
 
 function leave(e) {
   if (!dragging) return;
-  console.log('drag:leave', e);
   this.classList.remove('over');
 }
 
