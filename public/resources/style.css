@@ -21,38 +21,8 @@ body > footer {
     opacity: 1;
 }
 
-#cards {
-    padding-bottom: 40px;
-}
-
-#buttons {
-    display: none;
-    text-align: right;
-    position: fixed;
-    right: 10px;
-    top: 10px;
-}
-
-#buttons * {
-    float: right;
-    clear: both;
-}
-
-#buttons button {
-    display: none;
-}
-
-#buttons:hover button {
-    display: block;
-}
-
 a, a:visited {
     color: white;
-}
-
-#buttons .cardBoard {
-    width: 164px;
-    height: 234px;
 }
 
 .cardWrapper {
@@ -87,7 +57,7 @@ a, a:visited {
     max-width: 100%;
 }
 
-.cardBoard input {
+.cardBoard input, header input {
     background: transparent;
     border: none;
     color: inherit;
@@ -96,6 +66,10 @@ a, a:visited {
     width: 100%;
     overflow: hidden;
     text-align: inherit;
+}
+
+header input {
+    width: initial;
 }
 
 .edit > span {
@@ -146,8 +120,21 @@ body {
     overflow: hidden;
 }
 
+header {
+    position: sticky;
+    top: 0px;
+    border: 2px solid #fff;
+    padding: 9px 5px;
+    z-index: 500;
+    background-color: black;
+}
+
 header * {
     display: inline-block;
+}
+
+header .sidebar {
+    float: right;
 }
 
 .cardWrapper .footer {
@@ -179,12 +166,12 @@ header * {
     }
 }
 
-.tipTemplate {
+.tipTemplate, .template {
     display: none;
 }
 
 .tippy-tooltip {
-    width: 200px;
+    max-width: 200px;
     font-size: 13px;
 }
 .tippy-tooltip[data-size=small] {
@@ -222,14 +209,6 @@ header * {
     display: initial;
 }
 
-.add {
-    border: 2px solid white;
-    border-radius: 15px;
-    width: 26px;
-    text-align: center;
-    font-size: x-large;
-}
-
 .saving .tribe.none {
     display: none;
 }
@@ -248,4 +227,64 @@ header * {
 
 .over {
     border-left: 2px solid blue;
+}
+
+.sidebar > * {
+    position: relative;
+    top: -6px;
+    cursor: pointer;
+    width: 30px;
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 26px;
+}
+
+.sidebar *:hover img {
+    filter: drop-shadow(0px 3px 2px orange);
+    -webkit-filter: drop-shadow(0px 3px 2px orange);
+}
+
+.sidebar .spell {
+    width: 18px;
+}
+
+.new {
+    position: relative;
+    top: -6px;
+    cursor: pointer;
+    width: 30px;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 26px;
+}
+
+.new.tippy-active {
+    background-color: orange;
+}
+
+.group-name {
+    width: 200px;
+    cursor: text;
+}
+
+.group {
+    padding-bottom: 40px;
+}
+
+.tippy-tooltip.button-theme button {
+    display: block;
+    width: 100%;
+    margin: 2px 0px;
+}
+
+.pending {
+    display: none;
+}
+
+.cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }

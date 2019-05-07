@@ -1,17 +1,19 @@
 import tippy from './3rdparty/tippy.js';
 import extras from './extras.js';
 
+let dragging, active;
+
 // Important! Wrapper must exist on document before registering
 export default function registerTips(wrapper) {
   if (wrapper.draggable) {
-    wrapper.addEventListener('dragstart', closeall);
+    wrapper.addEventListener('dragstart', dragit);
+    wrapper.addEventListener('dragend', () => dragging = false);
   }
   const nameCell = wrapper.querySelector('.name');
   const monster = wrapper.querySelector('table.monster') !== null;
   tippy(nameCell, {
     theme: 'black',
     target: 'input',
-    arrow: false,
     content: document.getElementById('selectSoul').innerHTML,
     placement: 'right-start',
     distance: -5,
@@ -21,30 +23,31 @@ export default function registerTips(wrapper) {
       });
     },
     onShow(e) {
-      return !monster || extras();
+      return !dragging && (!monster || extras());
     },
   });
   const image = wrapper.querySelector('.image img');
   tippy(wrapper.querySelector('.image'), {
     content: 'Click to Select Image',
     placement: 'top',
+    arrow: true,
     trigger: 'mouseenter',
     size: 'small',
     interactive: false,
     onShown() {},
     onShow() {
-      return !image.src;
+      return !dragging && !image.src;
     },
   });
   // TODO: Set description keywords to allow insertion
   tippy(wrapper.querySelector('.description textarea'), {
     content: document.getElementById('descriptionTip').innerHTML,
+    arrow: true,
   });
   tippy(wrapper.querySelector('.rarity'), {
     theme: 'black',
     trigger: 'mouseenter',
     hideOnClick: true,
-    arrow: false,
     content: document.getElementById('selectRarity').innerHTML,
     placement: 'top',
     size: 'small',
@@ -67,8 +70,6 @@ export default function registerTips(wrapper) {
   tippy(tribe, {
     theme: 'black',
     trigger: 'mouseenter focus',
-    hideOnClick: false,
-    arrow: false,
     content: document.getElementById('selectTribe').innerHTML,
     placement: 'top-end',
     onMount(e) {
@@ -86,6 +87,27 @@ export default function registerTips(wrapper) {
     },
   });
 }
+
+/*
+export function registerGroup(group) {
+  tippy(group.querySelector('.new'), {
+    content: document.getElementById('groupButtons').innerHTML,
+    placement: 'bottom-end',
+    trigger: 'click',
+    theme: 'button',
+    distance: 0,
+    hideOnClick: true,
+    onMount(e) {
+      e.popper.querySelectorAll('button').forEach((button) => {
+        const monster = button.textContent === 'Monster';
+        if (monster || button.textContent === 'Spell') {
+          button.onclick = () => generate(monster, group);
+        }
+      });
+    },
+  });
+}
+// */
 
 function modifySoul(nameCell, popper) {
   const activeSoul = popper.querySelector('span.selectable.active');
@@ -105,10 +127,10 @@ function modifySoul(nameCell, popper) {
 }
 
 tippy.setDefaults({
-  onShow, onShown, onHidden,
+  onShown, onShow, onHide,
   placement: 'right-end',
   a11y: false,
-  arrow: true,
+  arrow: false,
   trigger: 'manual',
   duration: 0,
   hideOnClick: false,
@@ -119,22 +141,28 @@ tippy.setDefaults({
   animateFill: false,
 });
 
-function closeall() {
-  // TODO: Close all tippies
-}
-
-let active = null;
 function onShown(instance) {
   active = instance;
+  closeAll(instance);
 }
 
-function onHidden(instance) {
+function onHide(instance) {
   if (active === instance) {
     active = null;
   }
 }
 
-function onShow(instance) {
-  console.log(instance);
-  return !active;
+function onShow() {
+  return !dragging && !active;
+}
+
+function dragit() {
+  dragging = true;
+  closeAll();
+}
+
+function closeAll(except) {
+  document.querySelectorAll('.tippy-popper').forEach((p) => {
+    if (!except || p._tippy !== except) p._tippy.hide();
+  });
 }

@@ -1,26 +1,12 @@
-import card from './card.js';
-import group from './group.js';
-import draggable from './dnd.js';
-import tippy from './tippy.js';
-
-const container = group();
-document.body.append(container);
-
-function generate(monster = true) {
-  gtag('event', `create_${monster ? 'monster':'spell'}`,);
-  const wrapper = card(monster);
-  wrapper.draggable = true;
-  draggable(wrapper);
-  container.add(wrapper);
-  tippy(wrapper); // must be done after adding to document
-}
-
-document.querySelector('#buttons').style.display = 'block';
+import './group.js';
 
 function ready() {
-  document.querySelector('#loading').remove();
+  document.querySelectorAll('[legacy], #loading').forEach((el) => {
+    el.remove();
+  });
+  document.querySelectorAll('.pending').forEach((el) => {
+    el.classList.remove('pending');
+  });
 }
 
-window.generate = generate;
-
-ready(); // TODO: Trigger on event
+window.onload = ready;

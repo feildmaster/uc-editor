@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Undercards Template Editor - by feildmaster</title>
     
-    <link href="./resources/undercards.css?v=3.0.0" rel="stylesheet"/>
-    <link href="./resources/description.css?v=2.1.0" rel="stylesheet"/>
-    <link href="./resources/style.css?v=3.0.0" rel="stylesheet"/>
-    <link href="./resources/loading.css?v=3.0.0" rel="stylesheet"/>
+    <link href="./resources/undercards.css" rel="stylesheet"/>
+    <link href="./resources/description.css" rel="stylesheet"/>
+    <link href="./resources/style.css" rel="stylesheet"/>
+    <link href="./resources/legacy.css" rel="stylesheet"/>
+    <link href="./resources/loading.css" rel="stylesheet"/>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script src="https://www.googletagmanager.com/gtag/js?id=UA-38424623-1"></script>
@@ -34,7 +35,7 @@
     <!--<script defer src="/__/firebase/init.js"></script>-->
     
     <script defer src="https://unpkg.com/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
-    <!-- <script defer src="./resources/simpletoast.js?v=1.2.1"></script> -->
+    <!-- <script defer src="./resources/simpletoast.js"></script> -->
     <script type="module" src="./resources/modules/index.js"></script>
     <script defer nomodule src="./resources/script.js"></script>
   </head>
@@ -49,13 +50,13 @@
       </span>
       <div>Loading...</div>
     </div> 
-    <div id="buttons" legacy>
+    <div id="buttons" class="template" legacy>
       <span class="add">+</span>
       <button onclick="generate();">Monster</button>
       <button onclick="generate(false);">Spell</button>
     </div>
     <div id="cards" legacy></div>
-    <div class="context">
+    <div class="context template">
       <li class="close">Close</li>
       <li class="download">Download Card</li>
       <li class="delete">Delete Card</li>
@@ -118,6 +119,20 @@
         <img class="selectable smallIcon extra" src="./resources/tribes/SPIDER.png">
         <img class="selectable smallIcon" src="./resources/tribes/TEMMIE.png">
         <img class="selectable smallIcon" src="./resources/tribes/ALL.png">
+    </div>
+    <div id="groupButtons" class="tipTemplate">
+      <button>Monster</button>
+      <button>Spell</button>
+    </div>
+    <div id="group" class="template">
+      <header>
+        <span class="sidebar">
+          <span><img class="monster" src="./resources/tribes/MONSTER.png"></span>
+          <span><img class="spell" src="./resources/images/SPELL.png"></span>
+        </span>
+        <span class="group-name">Default Group</span><input>
+      </header>
+      <div class="cards"></div>
     </div>
     <footer class="transparent"><a href="https://undercards.net/SignUp?ref=63068">undercards</a> Card Template Editor</footer>
   </body>
