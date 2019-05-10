@@ -10,7 +10,7 @@ export default function cardMenu(e) {
   context.style.top = `${e.pageY}px`;
   // Delete
   context.querySelector('.delete').onclick = () => {
-    this.remove();
+    this.parentElement.remove();
     context.style.display = '';
   };
   // Download
