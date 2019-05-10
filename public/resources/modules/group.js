@@ -11,11 +11,10 @@ export default function newGroup() {
   container.querySelector('.monster').parentElement.onclick = () => generate(true, container);
   container.querySelector('.spell').parentElement.onclick = () => generate(false, container);
   container.id = `group${id++}`;
-  container.classList.add('group', 'pending');
+  container.classList.add('group');
   document.body.append(container);
-  
+
   draggable(container);
-  container.querySelector('.cards').removeAttribute('tabIndex');
 
   return container;
 }
@@ -27,9 +26,6 @@ function generate(monster, container) {
 
   tip(wrapper); // must be done after adding to document
 }
-
-// Initialize the first group
-newGroup();
 
 function setupName() {
   const name = this.querySelector('.group-name');

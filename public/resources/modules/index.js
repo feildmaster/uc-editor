@@ -1,12 +1,12 @@
-import group from './group.js';
+import newGroup from './group.js';
 
 function ready() {
   document.querySelectorAll('[legacy], #loading').forEach((el) => {
     el.remove();
   });
-  document.querySelectorAll('.pending').forEach((el) => {
-    el.classList.remove('pending');
-  });
+  document.querySelector('#draggable-live-region').remove();
+
+  newGroup();
 }
 
 window.onload = ready;

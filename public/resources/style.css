@@ -269,3 +269,11 @@ header {
     z-index: 2000;
     opacity: 0.8;
 }
+
+.cards[tabindex]:not(.draggable-container--over):focus {
+    outline: none;
+}
+
+.cards.draggable-container--over {
+    outline: -webkit-focus-ring-color auto 5px;
+}

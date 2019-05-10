@@ -1,4 +1,4 @@
-import 'https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.8/draggable.bundle.min.js';
+import 'https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.8/draggable.bundle.js';
 import {editing} from './card.js';
 
 const instance = new Draggable.Sortable([], {
@@ -6,9 +6,9 @@ const instance = new Draggable.Sortable([], {
   classes: {
     'source:dragging': 'dragging',
   },
-}).removePlugin(Draggable.Draggable.Plugins.Focusable)
+}).removePlugin(Draggable.Draggable.Plugins.Focusable, Draggable.Draggable.Plugins.Announcement)
   .on('drag:start', (e) => {
-    if (editing) e.cancel()
+    if (editing) e.cancel();
   });
 
 export default function setup(group) {
