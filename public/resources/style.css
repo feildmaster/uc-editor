@@ -31,6 +31,7 @@ a, a:visited {
 }
 
 .cardWrapper {
+    display: inline-table;
     border: 2px solid black;
     background: black;
 }
@@ -207,18 +208,10 @@ header {
     display: initial;
 }
 
-.saving .tribe.none {
-    display: none;
-}
-
-.saving .footer {
-    display: table-footer-group;
-}
-
 .sidebar > * {
     position: relative;
     cursor: pointer;
-    width: 30px;
+    min-width: 30px;
     text-align: center;
     border-radius: 15px;
     font-size: 26px;
@@ -237,10 +230,11 @@ header {
 .group-name, .group-name + input {
     flex: 1;
     cursor: text;
+    padding: 6px 0;
 }
 
 .group {
-    padding-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .pending {
@@ -274,4 +268,23 @@ header {
 
 .cards.draggable-container--over {
     outline: -webkit-focus-ring-color auto 5px;
+}
+
+/* Saving */
+.group.saving {
+    width: fit-content;
+    margin: 0;
+    background-color: #000;
+}
+
+.group.saving .cards {
+    min-height: initial;
+}
+
+.saving .no-save {
+    display: none;
+}
+
+.cardWrapper.saving .footer {
+    display: table-footer-group;
 }

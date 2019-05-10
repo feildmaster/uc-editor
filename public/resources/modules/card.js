@@ -28,7 +28,7 @@ export default function card(monster = true) {
         <td class="image" colspan="4">
           <input type="file" accept="image/*">
           <img>
-          <img class="tribe none${monster?'':' extra'}" src="./resources/tribes/MONSTER.png">
+          <img class="tribe none no-save${monster?'':' extra'}" src="./resources/tribes/MONSTER.png">
         </td>
       </tr>
       <tr>

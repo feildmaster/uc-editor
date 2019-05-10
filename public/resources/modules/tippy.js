@@ -75,7 +75,9 @@ export default function registerTips(wrapper) {
           editEvent('tribe');
           e.popper.querySelector('img.active').classList.remove('active');
           item.classList.add('active');
-          tribe.classList.toggle('none', item.src.includes('MONSTER'));
+          const isMonster = item.src.includes('MONSTER');
+          tribe.classList.toggle('none', isMonster);
+          tribe.classList.toggle('no-save', isMonster);
           tribe.classList.toggle('smallerIcon', item.src.includes('SPIDER'));
           tribe.src = item.src;
           e.popper._tippy.hide();

@@ -1,13 +1,13 @@
-export default function saveCard(card) {
-  card.classList.toggle('saving', true);
-  image(card).then((url) => {
+export default function save(element, as) {
+  element.classList.toggle('saving', true);
+  image(element).then((url) => {
     const link = document.createElement('a');
-    link.download = `${card.querySelector('.name input').value||'undercard'}.png`;
+    link.download = `${as||element.querySelector('.name input').value||'undercard'}.png`;
     link.href = url;
     link.click();
   }).catch((error) => console.error('Ooops.', error))
   .then(() => {
-    card.classList.toggle('saving', false);
+    element.classList.toggle('saving', false);
   });
 }
 
@@ -16,5 +16,8 @@ export function image(element) {
 }
 
 function filter(node) {
-  return node.nodeName !== 'IMG' || node.src;
+  if (node.classList && node.classList.contains('no-save')) {
+    return false;
+  }
+  return (node.nodeName !== 'IMG' || node.src);
 }

@@ -1,16 +1,15 @@
 import card from './card.js';
 import draggable from './draggable.js';
 import tip from './tippy.js';
+import save from './save.js';
 
 let id = 0;
 
 export default function newGroup() {
   const container = document.createElement('div');
   container.innerHTML = document.querySelector('#group').innerHTML;
-  setupName.call(container);
-  container.querySelector('.book').parentElement.onclick = newGroup.bind(container);
-  container.querySelector('.monster').parentElement.onclick = () => generate(true, container);
-  container.querySelector('.spell').parentElement.onclick = () => generate(false, container);
+  setupName(container);
+  setupButtons(container);
   container.id = `group${id++}`;
   container.classList.add('group');
   if (this) {
@@ -32,9 +31,9 @@ function generate(monster, container) {
   tip(wrapper); // must be done after adding to document
 }
 
-function setupName() {
-  const name = this.querySelector('.group-name');
-  const input = this.querySelector('.group-name + input');
+function setupName(container) {
+  const name = container.querySelector('.group-name');
+  const input = container.querySelector('.group-name + input');
   name.onclick = () => {
     name.style.display = 'none';
     input.value = name.textContent;
@@ -50,4 +49,11 @@ function setupName() {
     name.textContent = `Group ${id}`;
   }
   input.placeholder = name.textContent;
+}
+
+function setupButtons(container) {
+  container.querySelector('.save').parentElement.onclick = () => save(container, container.querySelector('.group-name').textContent);
+  container.querySelector('.book').parentElement.onclick = newGroup.bind(container);
+  container.querySelector('.monster').parentElement.onclick = () => generate(true, container);
+  container.querySelector('.spell').parentElement.onclick = () => generate(false, container);
 }
