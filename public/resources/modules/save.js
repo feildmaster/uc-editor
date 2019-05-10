@@ -1,6 +1,6 @@
 export default function saveCard(card) {
   card.classList.toggle('saving', true);
-  domtoimage.toPng(card, {filter}).then((url) => {
+  image(card).then((url) => {
     const link = document.createElement('a');
     link.download = `${card.querySelector('.name input').value||'undercard'}.png`;
     link.href = url;
@@ -9,6 +9,10 @@ export default function saveCard(card) {
   .then(() => {
     card.classList.toggle('saving', false);
   });
+}
+
+export function image(element) {
+  return domtoimage.toPng(element, {filter});
 }
 
 function filter(node) {

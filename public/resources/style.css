@@ -1,3 +1,8 @@
+* {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 body > footer {
     position: fixed;
     bottom: 10px;
@@ -124,17 +129,12 @@ header {
     position: sticky;
     top: 0px;
     border: 2px solid #fff;
-    padding: 9px 5px;
+    padding: 0 10px;
     z-index: 500;
     background-color: black;
-}
-
-header * {
-    display: inline-block;
-}
-
-header .sidebar {
-    float: right;
+    flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
 }
 
 .cardWrapper .footer {
@@ -217,31 +217,17 @@ header .sidebar {
     display: table-footer-group;
 }
 
-.dragging {
-    opacity: 0.25;
-    -webkit-transform:scale(0.5);
-    -moz-transform:scale(0.5);
-    -ms-transform:scale(0.5);
-    transform:scale(0.5);
-}
-
-.over {
-    border-left: 2px solid blue;
-}
-
 .sidebar > * {
     position: relative;
-    top: -6px;
     cursor: pointer;
     width: 30px;
-    -webkit-user-select: none;
-    user-select: none;
     text-align: center;
     border-radius: 15px;
     font-size: 26px;
+    display: inline-block;
 }
 
-.sidebar *:hover img {
+.sidebar > *:hover img {
     filter: drop-shadow(0px 3px 2px orange);
     -webkit-filter: drop-shadow(0px 3px 2px orange);
 }
@@ -250,33 +236,13 @@ header .sidebar {
     width: 18px;
 }
 
-.new {
-    position: relative;
-    top: -6px;
-    cursor: pointer;
-    width: 30px;
-    text-align: center;
-    border-radius: 15px;
-    font-size: 26px;
-}
-
-.new.tippy-active {
-    background-color: orange;
-}
-
-.group-name {
-    width: 200px;
+.group-name, .group-name + input {
+    flex: 1;
     cursor: text;
 }
 
 .group {
     padding-bottom: 40px;
-}
-
-.tippy-tooltip.button-theme button {
-    display: block;
-    width: 100%;
-    margin: 2px 0px;
 }
 
 .pending {
@@ -287,4 +253,19 @@ header .sidebar {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    min-height: 238px;
+}
+
+/* DnD */
+.dragging {
+    opacity: 0.25;
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    -ms-transform:scale(0.5);
+    transform:scale(0.5);
+}
+
+.draggable-mirror {
+    z-index: 2000;
+    opacity: 0.8;
 }

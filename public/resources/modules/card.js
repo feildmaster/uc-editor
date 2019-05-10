@@ -7,7 +7,9 @@ const highlightRegex = /\{([^}]+)}/g;
 
 let id = 1;
 
-export function cardWrapper() {
+export let editing = false;
+
+function cardWrapper() {
   const wrapper = document.createElement('span');
   wrapper.className = 'cardWrapper';
   return wrapper;
@@ -80,6 +82,7 @@ export default function card(monster = true) {
 }
 
 function editName() {
+  editing = true;
   this.querySelector('span').style.display = 'none';
   this.querySelector('input').focus();
   if (this._tippy) {
@@ -95,6 +98,7 @@ function finalizeName(e = {}) {
     }
     this._tippy.hide(0);
   }
+  editing = false;
   const span = this.querySelector('span');
   const input = this.querySelector('input');
   if (span.textContent !== input.value) {
@@ -105,6 +109,7 @@ function finalizeName(e = {}) {
 }
 
 function edit(input) {
+  editing = true;
   this.style.display = 'none';
   input.value = '';
   input.placeholder = this.textContent;
@@ -116,6 +121,7 @@ function edit(input) {
 
 function finalizeEdit(span) {
   if (this.keepAlive) return;
+  editing = false;
   const newValue = this.value || span.textContent;
   if (span.textContent !== newValue) {
     editEvent(span.parentElement.classList[0]);
@@ -125,6 +131,7 @@ function finalizeEdit(span) {
 }
 
 function editDescription(input) {
+  editing = true;
   this.style.display = 'none';
   input.focus();
   input._oldValue = input.value;
@@ -137,6 +144,7 @@ function renderDescription(span, e = {}) {
     if (e.relatedTarget === tippy.popper) return;
     tippy.hide(0);
   }
+  editing = false;
   if (this.value !== this._oldValue) {
     editEvent('description');
     span.innerHTML = this.value

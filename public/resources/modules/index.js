@@ -1,4 +1,4 @@
-import './group.js';
+import group from './group.js';
 
 function ready() {
   document.querySelectorAll('[legacy], #loading').forEach((el) => {

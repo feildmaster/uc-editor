@@ -1,14 +1,11 @@
 import tippy from './3rdparty/tippy.js';
+import {isDragging} from './draggable.js';
 import extras from './extras.js';
 
-let dragging, active;
+let active;
 
 // Important! Wrapper must exist on document before registering
 export default function registerTips(wrapper) {
-  if (wrapper.draggable) {
-    wrapper.addEventListener('dragstart', dragit);
-    wrapper.addEventListener('dragend', () => dragging = false);
-  }
   const nameCell = wrapper.querySelector('.name');
   const monster = wrapper.querySelector('table.monster') !== null;
   tippy(nameCell, {
@@ -23,7 +20,7 @@ export default function registerTips(wrapper) {
       });
     },
     onShow(e) {
-      return !dragging && (!monster || extras());
+      return !isDragging() && (!monster || extras());
     },
   });
   const image = wrapper.querySelector('.image img');
@@ -36,7 +33,7 @@ export default function registerTips(wrapper) {
     interactive: false,
     onShown() {},
     onShow() {
-      return !dragging && !image.src;
+      return !isDragging() && !image.src;
     },
   });
   // TODO: Set description keywords to allow insertion
@@ -153,12 +150,7 @@ function onHide(instance) {
 }
 
 function onShow() {
-  return !dragging && !active;
-}
-
-function dragit() {
-  dragging = true;
-  closeAll();
+  return !isDragging() && !active;
 }
 
 function closeAll(except) {

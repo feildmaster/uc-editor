@@ -1,8 +1,8 @@
 import card from './card.js';
-import draggable from './dnd.js';
+import draggable from './draggable.js';
 import tip from './tippy.js';
 
-let id = 1;
+let id = 0;
 
 export default function newGroup() {
   const container = document.createElement('div');
@@ -13,16 +13,18 @@ export default function newGroup() {
   container.id = `group${id++}`;
   container.classList.add('group', 'pending');
   document.body.append(container);
+  
+  draggable(container);
+  container.querySelector('.cards').removeAttribute('tabIndex');
+
   return container;
 }
 
-export function generate(monster, container) {
+function generate(monster, container) {
   gtag('event', `create_${monster ? 'monster':'spell'}`,);
   const wrapper = card(monster);
-  wrapper.draggable = true;
   container.querySelector('.cards').append(wrapper);
 
-  //draggable(wrapper);
   tip(wrapper); // must be done after adding to document
 }
 
@@ -34,7 +36,7 @@ function setupName() {
   const input = this.querySelector('.group-name + input');
   name.onclick = () => {
     name.style.display = 'none';
-    input.value = '';
+    input.value = name.textContent;
     input.focus();
   };
   input.onblur = () => {
@@ -43,8 +45,8 @@ function setupName() {
     if (text)
       name.textContent = text;
   };
-  if (id > 1) {
-    //name.textContent = `Group ${id}`;
+  if (id > 0) {
+    name.textContent = `Group ${id}`;
   }
   input.placeholder = name.textContent;
 }
