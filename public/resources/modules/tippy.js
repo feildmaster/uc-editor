@@ -40,6 +40,7 @@ export default function registerTips(wrapper) {
   tippy(wrapper.querySelector('.description textarea'), {
     content: document.getElementById('descriptionTip').innerHTML,
     arrow: true,
+    hideOnClick: true,
   });
   tippy(wrapper.querySelector('.rarity'), {
     theme: 'black',
