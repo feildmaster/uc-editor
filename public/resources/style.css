@@ -232,7 +232,7 @@ header {
     -webkit-filter: drop-shadow(0px 3px 2px orange);
 }
 
-.sidebar .spell {
+.sidebar .spell, .sidebar .book {
     width: 18px;
 }
 
@@ -253,7 +253,7 @@ header {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    min-height: 238px;
+    min-height: 50px;
 }
 
 /* DnD */

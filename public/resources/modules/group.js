@@ -8,11 +8,16 @@ export default function newGroup() {
   const container = document.createElement('div');
   container.innerHTML = document.querySelector('#group').innerHTML;
   setupName.call(container);
+  container.querySelector('.book').parentElement.onclick = newGroup.bind(container);
   container.querySelector('.monster').parentElement.onclick = () => generate(true, container);
   container.querySelector('.spell').parentElement.onclick = () => generate(false, container);
   container.id = `group${id++}`;
   container.classList.add('group');
-  document.body.append(container);
+  if (this) {
+    this.after(container);
+  } else {
+    document.body.append(container);
+  }
 
   draggable(container);
 
