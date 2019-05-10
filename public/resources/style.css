@@ -159,7 +159,7 @@ header {
     -moz-appearance: textfield;
 }
 
-@media only screen and (max-device-width: 640px), only screen and (max-device-width: 768px), only screen and (max-device-width: 640px), only screen and (max-device-height: 768px) {
+@media only screen and (max-width: 640px), only screen and (max-width: 768px), only screen and (max-height: 768px) {
     .cardWrapper .footer {
         font-size: 11px;
     }
@@ -173,6 +173,15 @@ header {
     max-width: 200px;
     font-size: 13px;
 }
+@media only screen and (max-width: 513px) {
+    .cards {
+        justify-content: space-between;
+    }
+    .tippy-tooltip {
+        width: 200px;
+    }
+}
+
 .tippy-tooltip[data-size=small] {
     width: calc(158px - .8rem);
 }
@@ -242,10 +251,13 @@ header {
 }
 
 .cards {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     min-height: 50px;
+}
+
+.cards:empty {
+    width: 100%;
 }
 
 /* DnD */
@@ -278,6 +290,8 @@ header {
 }
 
 .group.saving .cards {
+    width: fit-content;
+    justify-content: initial;
     min-height: initial;
 }
 
