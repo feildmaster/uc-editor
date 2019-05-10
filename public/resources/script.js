@@ -338,3 +338,9 @@ window.onload = () => {
     document.querySelector('#loading').remove();
     new SimpleToast('Update your browser to use the improved editor!');
 };
+
+(() => {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/tippy.js@3.4.1/dist/tippy.all.js';
+    document.head.append(script);
+})();
