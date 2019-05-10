@@ -6,7 +6,9 @@ const instance = new Draggable.Sortable([], {
   classes: {
     'source:dragging': 'dragging',
   },
+  //handle: '.name',
 }).removePlugin(Draggable.Draggable.Plugins.Focusable, Draggable.Draggable.Plugins.Announcement)
+  //.removeSensor(Draggable.Sensors.TouchSensor)
   .on('drag:start', (e) => {
     if (editing) e.cancel();
   });

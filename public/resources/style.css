@@ -159,7 +159,7 @@ header {
     -moz-appearance: textfield;
 }
 
-@media only screen and (max-width: 640px), only screen and (max-width: 768px), only screen and (max-height: 768px) {
+@media only screen and (max-width: 640px) {
     .cardWrapper .footer {
         font-size: 11px;
     }
@@ -173,7 +173,7 @@ header {
     max-width: 200px;
     font-size: 13px;
 }
-@media only screen and (max-width: 513px) {
+@media only screen and (max-width: 640px) {
     .cards {
         justify-content: space-between;
     }
@@ -284,13 +284,11 @@ header {
 
 /* Saving */
 .group.saving {
-    width: fit-content;
     margin: 0;
     background-color: #000;
 }
 
 .group.saving .cards {
-    width: fit-content;
     justify-content: initial;
     min-height: initial;
 }
@@ -301,4 +299,10 @@ header {
 
 .cardWrapper.saving .footer {
     display: table-footer-group;
+}
+
+@media only screen and (min-width: 640px) {
+    .group.saving, .group.saving .cards {
+        width: fit-content;
+    }
 }
