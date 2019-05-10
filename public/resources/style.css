@@ -31,8 +31,6 @@ a, a:visited {
 }
 
 .cardWrapper {
-    display: inline-table;
-    margin: 0px;
     border: 2px solid black;
     background: black;
 }
