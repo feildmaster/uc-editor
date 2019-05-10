@@ -232,8 +232,8 @@ header {
     -webkit-filter: drop-shadow(0px 3px 2px orange);
 }
 
-.sidebar .spell, .sidebar .book {
-    width: 18px;
+.sidebar img {
+    max-width: 18px;
 }
 
 .group-name, .group-name + input {
