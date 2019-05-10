@@ -336,4 +336,5 @@ window.onload = () => {
 
     document.querySelector('#buttons').style.display = 'block';
     document.querySelector('#loading').remove();
+    new SimpleToast('Update your browser to use the improved editor!');
 };
