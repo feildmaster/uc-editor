@@ -3,6 +3,11 @@
     user-select: none;
 }
 
+input, textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
 body > footer {
     position: fixed;
     bottom: 10px;
