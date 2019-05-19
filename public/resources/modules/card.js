@@ -2,7 +2,7 @@ import cardMenu from './menu.js';
 import { effects, specials } from './effects.js';
 
 const underlineRegex = new RegExp(`(${effects.join('|')})(?![^{]*})|_([^_]+)_`, 'g');
-const colorRegex = new RegExp(`(${specials.join('|')})`, 'g');
+const specialRegex = new RegExp(`(${specials.join('|')})`, 'g');
 const highlightRegex = /\{([^}]+)}/g;
 
 let id = 1;
@@ -149,7 +149,7 @@ function renderDescription(span, e = {}) {
     editEvent('description');
     span.innerHTML = this.value
       .replace(underlineRegex, (match, $1, $2) => `<span class="underline">${$2||$1}</span>`)
-      .replace(colorRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`)
+      .replace(specialRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`)
       .replace(highlightRegex, (match, $1) => `<span class="highlight">${$1}</span>`);
   }
   span.style.display = '';
