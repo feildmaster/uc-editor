@@ -3,7 +3,7 @@ import { effects, specials } from './effects.js';
 
 const underlineRegex = new RegExp(`(${effects.join('|')})(?![^{]*})|_([^_]+)_`, 'g');
 const specialRegex = new RegExp(`(${specials.join('|')})`, 'g');
-const colorRegex = /\{([^;|]*).*[;|]([^}]+)}/g; ///\{color:([^}]+)}(.*){\/color}/g;
+const colorRegex = /\{([^;|]*)[^}]*[;|]([^}]+)}/g; ///\{color:([^}]+)}(.*){\/color}/g;
 const highlightRegex = /\{([^}]+)}/g;
 
 let id = 1;
