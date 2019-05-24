@@ -1,4 +1,9 @@
+import serviceWorker from './sw.register.js';
 import newGroup from './group.js';
+
+const preloads = [
+  serviceWorker(),
+];
 
 function ready() {
   document.querySelectorAll('[legacy], #loading').forEach((el) => {
@@ -9,4 +14,7 @@ function ready() {
   newGroup();
 }
 
-window.onload = ready;
+Promise.all(preloads)
+  .then(ready)
+  .catch(console.error);
+
