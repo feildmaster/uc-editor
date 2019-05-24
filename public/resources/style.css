@@ -66,7 +66,7 @@ a, a:visited {
     max-width: 100%;
 }
 
-.cardBoard input, header input {
+.cardBoard input, .group header input {
     background: transparent;
     border: none;
     color: inherit;
@@ -77,7 +77,7 @@ a, a:visited {
     text-align: inherit;
 }
 
-header input {
+.group header input {
     width: initial;
 }
 
@@ -129,7 +129,7 @@ body {
     overflow: hidden;
 }
 
-header {
+.group header {
     position: sticky;
     top: 0px;
     border: 2px solid #fff;
@@ -232,7 +232,7 @@ header {
     display: inline-block;
 }
 
-.sidebar > *:hover img {
+.sidebar > *:hover > * {
     filter: drop-shadow(0px 3px 2px orange);
     -webkit-filter: drop-shadow(0px 3px 2px orange);
 }
@@ -245,6 +245,15 @@ header {
     flex: 1;
     cursor: text;
     padding: 6px 0;
+}
+
+.sidebar .material-icons {
+    font-size: 18px;
+}
+
+.group.sortmode .sort {
+    filter: drop-shadow(0px 3px 2px red);
+    -webkit-filter: drop-shadow(0px 3px 2px red);
 }
 
 .group {

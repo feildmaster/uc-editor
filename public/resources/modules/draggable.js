@@ -10,11 +10,14 @@ const instance = new Draggable.Sortable([], {
 }).removePlugin(Draggable.Draggable.Plugins.Focusable, Draggable.Draggable.Plugins.Announcement)
   //.removeSensor(Draggable.Sensors.TouchSensor)
   .on('drag:start', (e) => {
-    if (editing) e.cancel();
+    if (editing || !e.sourceContainer.parentElement.classList.contains('sortmode')) e.cancel();
   });
 
 export default function setup(group) {
   instance.addContainer(group.querySelector('.cards'));
+  group.querySelector('.sidebar .sort').parentElement.onclick = function() {
+    group.classList.toggle('sortmode');
+  };
 }
 
 export function isDragging() {
