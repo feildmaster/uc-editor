@@ -148,12 +148,12 @@ function renderDescription(span, e = {}) {
   editing = false;
   if (this.value !== this._oldValue) {
     editEvent('description');
-    span.innerHTML = this.value
-      .replace(underlineRegex, (match, $1, $2) => `<span class="underline">${$2||$1}</span>`)
-      .replace(colorRegex, (match, $1, $2) => `<span style="color:${$1}">${$2}</span>`)
-      .replace(specialRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`)
-      .replace(highlightRegex, (match, $1) => `<span class="highlight">${$1}</span>`);
   }
+  span.innerHTML = this.value
+    .replace(underlineRegex, (match, $1, $2) => `<span class="underline">${$2||$1}</span>`)
+    .replace(colorRegex, (match, $1, $2) => `<span style="color:${$1}">${$2}</span>`)
+    .replace(specialRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`)
+    .replace(highlightRegex, (match, $1) => `<span class="highlight">${$1}</span>`);
   span.style.display = '';
 }
 
