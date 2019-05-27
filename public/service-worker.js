@@ -1,5 +1,9 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
+workbox.core.setCacheNameDetails({
+  prefix: 'undercard-editor',
+});
+
 // Cache index
 workbox.routing.registerRoute(
   /index\.html$|\/$/,
