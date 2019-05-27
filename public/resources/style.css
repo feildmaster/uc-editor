@@ -57,6 +57,9 @@ a, a:visited {
     line-height: 1.42857143;
     background: #000;
 }
+.cardBoard .name {
+    white-space: nowrap;
+}
 .cardBoard .cost {
     max-width: 36px;
 }
@@ -106,12 +109,10 @@ body {
 
 .cardBoard .description {
     max-height: 82px;
-    overflow: hidden;
 }
 
 .description div {
     max-height: 82px;
-    overflow: hidden;
 }
 
 .description textarea {

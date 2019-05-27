@@ -1,5 +1,6 @@
 import cardMenu from './menu.js';
 import { effects, specials } from './effects.js';
+import resize from './resize.js';
 
 const underlineRegex = new RegExp(`(${effects.join('|')})(?![^{]*})|_([^_]+)_`, 'g');
 const specialRegex = new RegExp(`(${specials.join('|')})`, 'g');
@@ -22,7 +23,7 @@ export default function card(monster = true) {
   wrapper.innerHTML = `
     <table class="cardBoard ${monster?'monster':'spell'}">
       <tr>
-        <td class="name" colspan="3"><span></span><input type="text" maxlength="15" placeholder="Name"></td>
+        <td class="name" colspan="3"><span></span><input type="text" maxlength="18" placeholder="Name"></td>
         <td class="cost edit"><span>0</span></td>
       </tr>
       <tr>
@@ -104,9 +105,10 @@ function finalizeName(e = {}) {
   const input = this.querySelector('input');
   if (span.textContent !== input.value) {
     editEvent('name');
-    span.textContent = input.value;
   }
+  span.textContent = input.value;
   span.style.display = '';
+  resize(span.parentElement, {height: false});
 }
 
 function edit(input) {
@@ -155,6 +157,7 @@ function renderDescription(span, e = {}) {
     .replace(specialRegex, (match, $1) => `<span class="${getClass($1)}">${$1}</span>`)
     .replace(highlightRegex, (match, $1) => `<span class="cardName">${$1}</span>`);
   span.style.display = '';
+  resize(span.parentElement);
 }
 
 function getClass(keyword) {
