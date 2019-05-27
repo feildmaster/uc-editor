@@ -4,7 +4,7 @@ export const effects = [
   // Tribes
   'Amalgamates?', 'Bombs?', 'Dogs?', 'Froggits?', 'G followers?', 'Lost souls?', 'Mold', 'Plants?', 'Royal guards?', 'Snails?', 'Spiders?', 'Temmies?',
 ];
-export const specials = ['ATK', 'DMG', 'HP', 'KR'];
+export const specials = ['ATK', 'DMG', 'HP', 'KR', 'cost'];
 
 const div = document.querySelector('#descriptionTip div');
 function addType(type) {

@@ -1,10 +1,10 @@
 .underline { text-decoration: underline; }
-.highlight { color: #00b8ff; }
+.COST { color: #00b8ff; }
 .DETERMINATION, .attack { color: #f00; }
 .KINDNESS, .health { color: #00c000; }
 .JUSTICE, .damage { color: #ff0; }
 .PERSEVERANCE, .poison { color: #d535d9; }
-.PATIENCE { color: #41fcff; }
+.PATIENCE, .cardName { color: #41fcff; }
 .BRAVERY { color: #fca500; }
 .INTEGRITY { color: #003bff; }
 
