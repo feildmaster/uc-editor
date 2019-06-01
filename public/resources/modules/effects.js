@@ -1,8 +1,8 @@
 export const effects = [
-  'Magic', 'Future', 'Dodge', 'Dust', 'Taunt', 'Paralyze', 'paralyzed', 'Start of turn', 'End of turn', 'Haste', 'Armor', `Can't attack`, 'Candy', 'Transparency', 'Charge',
-  'Fatigue', 'Turbo', 'Ranged', 'Support',
+  // Keywords
+  'Armor', 'Candy', 'Charge', 'Disarmed', 'Dodge', 'Dust', 'Fatigue', 'Future', 'Haste', 'Invulnerable', 'Magic', 'Paralyze', 'Ranged', 'Silence', 'Support', 'Taunt', 'Transparency', 'Turbo', 'Turn end', 'Turn start',
   // Tribes
-  'Amalgamates?', 'Bombs?', 'Dogs?', 'Froggits?', 'G followers?', 'Lost souls?', 'Mold', 'Plants?', 'Royal guards?', 'Snails?', 'Spiders?', 'Temmies?',
+  'Amalgamates?', 'Bombs?', 'Dogs?', 'Froggits?', 'G followers?', 'Lost souls?', 'Molds?', 'Plants?', 'Royal guards?', 'Snails?', 'Spiders?', 'Temmies?',
 ];
 export const specials = ['ATK', 'DMG', 'HP', 'KR', 'cost'];
 
