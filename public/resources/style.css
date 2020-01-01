@@ -325,3 +325,8 @@ body {
 .editor-wrapper {
     z-index: 100;
 }
+
+img.social {
+    width: 16px;
+    vertical-align: middle;
+}
