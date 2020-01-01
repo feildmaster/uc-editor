@@ -51,7 +51,14 @@
         <div class="pip"></div>
       </span>
       <div>Loading...</div>
-    </div> 
+    </div>
+    <footer class="transparent">
+      <a href="https://undercards.net/SignUp?ref=63068">Undercards</a> Template Editor 
+      &bullet;
+      <a href="https://discord.gg/xgT3X9j" title="Discord" target="_blank">
+        <img src="./resources/social/discord.png" class="social">
+      </a>
+    </footer>
     <div id="buttons" class="template" legacy>
       <span class="add">+</span>
       <button onclick="generate();">Monster</button>
@@ -63,7 +70,7 @@
       <li class="download">Download Card</li>
       <li class="delete">Delete Card</li>
     </div>
-    <div id="descriptionTip" class="tipTemplate">
+    <div id="descriptionTip" class="template">
       <h2>Keywords</h2>
       <div></div>
       <h2>Custom Keywords</h2>
@@ -73,7 +80,7 @@
         <span>{color|Text}</span>
       </div>
     </div>
-    <div id="selectSoul" class="tipTemplate">
+    <template id="selectSoul">
       <h2>Change Soul</h2>
       <span class="selectable active">CLEAR</span>
       <span class="selectable KINDNESS">KINDNESS</span>
@@ -83,8 +90,8 @@
       <span class="selectable BRAVERY">BRAVERY</span>
       <span class="selectable PERSEVERANCE">PERSEVERANCE</span>
       <span class="selectable DETERMINATION">DETERMINATION</span>
-    </div>
-    <div id="selectRarity" class="tipTemplate">
+    </template>
+    <template id="selectRarity">
       <h2>Select Rarity</h2>
       <div>
         <img class="selectable" src="./rarity/BASE.png">
@@ -105,8 +112,8 @@
         <img class="selectable" src="./rarity/LEGENDARY_DR.png">
         <img class="selectable" src="./rarity/DETERMINATION_DR.png">
       </div>
-    </div>
-    <div id="selectTribe" class="tipTemplate">
+    </template>
+    <template id="selectTribe">
       <!-- <h2>Select Tribe</h2> -->
       <img class="selectable smallerIcon active" src="./resources/tribes/MONSTER.png">
       <img class="selectable smallIcon" src="./resources/tribes/AMALGAMATE.png">
@@ -123,12 +130,12 @@
       <img class="selectable smallIcon" src="./resources/tribes/TEMMIE.png">
       <img class="selectable smallIcon" src="./resources/tribes/CHAOS_WEAPON.png">
       <img class="selectable smallIcon" src="./resources/tribes/ALL.png">
-    </div>
-    <div id="groupButtons" class="tipTemplate">
+    </template>
+    <template id="groupButtons">
       <button>Monster</button>
       <button>Spell</button>
-    </div>
-    <div id="group" class="template">
+    </template>
+    <template id="group">
       <header>
         <span class="group-name">Default Group</span><input>
         <span class="sidebar no-save">
@@ -141,13 +148,6 @@
         </span>
       </header>
       <div class="cards"></div>
-    </div>
-    <footer class="transparent">
-      <a href="https://undercards.net/SignUp?ref=63068">Undercards</a> Template Editor 
-      &bullet;
-      <a href="https://discord.gg/xgT3X9j" title="Discord" target="_blank">
-        <img src="./resources/social/discord.png" class="social">
-      </a>
-    </footer>
+    </template>
   </body>
 </html>
