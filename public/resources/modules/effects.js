@@ -4,9 +4,9 @@ export const effects = [
   'Synergy',
   // Tribes
   'Amalgamates?', 'Bombs?', 'Dogs?', 'Froggits?', 'G followers?', 'Lost souls?', 'Molds?', 'Plants?', 'Royal guards?', 'Snails?', 'Spiders?', 'Temmies?', 'Chaos Weapons?',
-  'Arachnids?', 'Chess Figures?',
+  'Arachnids?', 'Pieces?',
 ];
-export const specials = ['ATK', 'DMG', 'HP', 'KR', 'cost'];
+export const specials = ['ATK', 'DMG', 'HP', 'KR', 'cost', 'G'];
 
 const div = document.querySelector('#descriptionTip div');
 function addType(type) {

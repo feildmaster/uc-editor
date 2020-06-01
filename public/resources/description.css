@@ -1,5 +1,6 @@
 .underline { text-decoration: underline; }
 .COST { color: #00b8ff; }
+.gold { color: #ffd700; }
 .DETERMINATION, .attack { color: #f00; }
 .KINDNESS, .health { color: #00c000; }
 .JUSTICE, .damage { color: #ff0; }

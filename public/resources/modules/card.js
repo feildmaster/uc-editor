@@ -3,8 +3,8 @@ import { effects, specials } from './effects.js';
 import resize from './resize.js';
 
 const underlineRegex = new RegExp(`(${effects.join('|')})(?![^{]*})|_([^_]+)_`, 'g');
-const specialRegex = new RegExp(`(${specials.join('|')})`, 'g');
-const colorRegex = /\{([^;|]*)[^}]*[;|]([^}]+)}/g; ///\{color:([^}]+)}(.*){\/color}/g;
+const specialRegex = new RegExp(`\\b(${specials.join('|')})\\b`, 'g');
+const colorRegex = /\{([^;|}]*)[^}]*[;|]([^}]+)}/g; ///\{color:([^}]+)}(.*){\/color}/g;
 const highlightRegex = /\{([^}]+)}/g;
 
 let id = 1;
@@ -166,6 +166,7 @@ function getClass(keyword) {
     case 'HP': return 'health';
     case 'DMG': return 'damage';
     case 'KR': return 'poison';
+    case 'G': return 'gold';
     case 'cost': return 'COST';
   }
 }
