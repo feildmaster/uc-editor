@@ -4,7 +4,7 @@ export const effects = [
   'Synergy',
   // Tribes
   'Amalgamates?', 'Bombs?', 'Dogs?', 'Froggits?', 'G followers?', 'Lost souls?', 'Molds?', 'Plants?', 'Royal guards?', 'Snails?', 'Spiders?', 'Temmies?', 'Chaos Weapons?',
-  'Arachnids?', 'Pieces?',
+  'Arachnids?', 'Pieces?', 'Royal Inventions?',
 ];
 export const specials = ['ATK', 'DMG', 'HP', 'KR', 'cost', 'G'];
 
